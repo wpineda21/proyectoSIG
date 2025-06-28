@@ -148,6 +148,17 @@ class PuntosController {
       res.status(500).json({ success: false, message: "Error al eliminar punto", error: error.message });
     }
   }
+
+  // GET /api/puntos/departamentos
+static async getDepartamentos(req, res) {
+  try {
+    const departamentos = await PuntoRecoleccion.getDepartamentosUnicos();
+    res.json({ success: true, count: departamentos.length, data: departamentos });
+  } catch (error) {
+    res.status(500).json({ success: false, message: "Error al obtener departamentos", error: error.message });
+  }
+}
+
 }
 
 module.exports = PuntosController;

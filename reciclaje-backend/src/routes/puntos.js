@@ -22,5 +22,7 @@ router.get('/cercanos-por-tipo', validateCoordinates, PuntosController.getNearby
 router.post('/', PuntosController.create);
 router.put('/:id', PuntosController.update);
 router.delete('/:id', PuntosController.delete);
+router.get('/departamentos', PuntosController.getDepartamentos);
+
 
 module.exports = router;

@@ -268,6 +268,19 @@ class PuntoRecoleccion {
     const result = await pool.query(query, [id]);
     return result.rows[0];
   }
+
+static async getDepartamentosUnicos() {
+  const query = `
+    SELECT DISTINCT departamento
+    FROM puntos_recoleccion
+    WHERE departamento IS NOT NULL AND departamento <> ''
+    ORDER BY departamento
+  `;
+  const result = await pool.query(query);
+  return result.rows.map(row => row.departamento);
+}
+
+
 }
 
 module.exports = PuntoRecoleccion;
