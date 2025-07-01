@@ -1,6 +1,30 @@
 // Importa el modelo de puntos de recolección
 const PuntoRecoleccion = require("../models/PuntoRecoleccion");
 
+// Ejemplo de un punto crudo de la base de datos
+// {
+//   id: 1,
+//   nombre: "Punto Verde Central",
+//   latitud: 13.6929,
+//   longitud: -89.2182,
+//   tipo_residuo: "plástico"
+// }
+
+// // Se convierte en:
+// {
+//   type: "Feature",
+//   geometry: {
+//     type: "Point",
+//     coordinates: [-89.2182, 13.6929] // [longitud, latitud]
+//   },
+//   properties: {
+//     id: 1,
+//     nombre: "Punto Verde Central",
+//     tipo_residuo: "plástico"
+//     // ... otras propiedades
+//   }
+// }
+
 // Función auxiliar que convierte un punto de recolección a un objeto GeoJSON tipo Feature
 function puntoToFeature(punto) {
   return {
@@ -130,7 +154,7 @@ class PuntosController {
       const camposRequeridos = [ 'nombre', 'departamento', 'tipo_residuo', 'latitud', 'longitud' ];
       for (let campo of camposRequeridos) {
         if (data[campo] === undefined) {
-          return res.status(400).json({ success: false, message: `Campo ${campo} faltante` });
+          return res.status(400).json({ success: false, message: Campo ${campo} faltante });
         }
       }
       const nuevo = await PuntoRecoleccion.create(data);
